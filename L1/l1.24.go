@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 type Point struct {
@@ -20,14 +21,16 @@ func (p Point) Distance(other Point) float64 {
 	return math.Sqrt(dx*dx + dy*dy)
 }
 
+// Собственная функция Sleep через busy-wait
+func Sleep(duration time.Duration) {
+	start := time.Now()
+	for time.Since(start) < duration {
+		// Пустой цикл ожидания
+	}
+}
+
 func main() {
-
-	x1, y1 := 3.0, 4.0
-	x2, y2 := 7.0, 1.0
-
-	p1 := NewPoint(x1, y1)
-	p2 := NewPoint(x2, y2)
-
-	distance := p1.Distance(p2)
-	fmt.Printf("Расстояние между точками: %.2f\n", distance)
+	fmt.Println("Ожидание 2 секунды...")
+	Sleep(2 * time.Second)
+	fmt.Println("Прошло 2 секунды!")
 }
